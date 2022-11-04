@@ -1,0 +1,27 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "food reciepes site",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAES-Pyramids/Forkiy.git"
+  },
+  "author": "Abo El-Seoud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MAES-Pyramids/Forkiy/issues"
+  },
+  "homepage": "https://github.com/MAES-Pyramids/Forkiy#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0"
+  },
+  "dependencies": {
+    "core-js": "^3.26.0",
+    "regenerator-runtime": "^0.13.10"
+  }
+}
