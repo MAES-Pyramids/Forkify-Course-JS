@@ -4,11 +4,15 @@ import { GetJSON } from './helper.js';
 
 export const state = {
   exportedRecipe: {},
+  search: {
+    query: '',
+    result: [],
+  },
 };
 ///////////////////////////////////////
 export const loadRecipe = async function (id) {
   try {
-    const data = await GetJSON(`${URL}/${id}`);
+    const data = await GetJSON(`${URL}${id}`);
     const { recipe } = data.data;
     state.exportedRecipe = {
       id: recipe.id,
@@ -21,7 +25,24 @@ export const loadRecipe = async function (id) {
       ingredients: recipe.ingredients,
     };
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    throw err;
   }
 };
 ///////////////////////////////////////
+export const loadSearch = async function (query) {
+  try {
+    state.search.query = query;
+    const data = await GetJSON(`${URL}?search=${query}`);
+    state.search.result = data.data.recipes.map(result => {
+      return {
+        id: result.id,
+        title: result.title,
+        publisher: result.publisher,
+        image: result.image_url,
+      };
+    });
+  } catch (err) {
+    throw err;
+  }
+};
