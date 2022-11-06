@@ -17,6 +17,9 @@ async function controlRecipes() {
 
     recipeView.renderSpinner();
 
+    // @) Update results view to mark selected search result
+    resultView.update(model.getSearchResultsPage());
+
     await model.loadRecipe(id); //we are calling async function inside a async so we need to wait
 
     //Render Recipes
@@ -53,7 +56,7 @@ function controlPagination(page_number) {
 
 function controlServicesNumber(servicesNumber) {
   model.updateService(servicesNumber);
-  recipeView.render(model.state.exportedRecipe);
+  recipeView.update(model.state.exportedRecipe);
 }
 
 // publisher subscriber pattern for adding event listener
