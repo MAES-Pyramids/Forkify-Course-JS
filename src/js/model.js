@@ -1,11 +1,13 @@
 import { async } from 'regenerator-runtime';
-import { URL } from './config.js';
+import { URL, MAX_RESULTS_NUMBER } from './config.js';
 import { GetJSON } from './helper.js';
 
 export const state = {
   exportedRecipe: {},
   search: {
     query: '',
+    current_page: 1,
+    results_number: MAX_RESULTS_NUMBER,
     result: [],
   },
 };
@@ -45,4 +47,13 @@ export const loadSearch = async function (query) {
   } catch (err) {
     throw err;
   }
+};
+///////////////////////////////////////
+export const getSearchResultsPage = function (
+  page = state.search.current_page
+) {
+  state.search.current_page = page;
+  const start = (page - 1) * state.search.results_number;
+  const end = page * state.search.results_number;
+  return state.search.result.slice(start, end);
 };

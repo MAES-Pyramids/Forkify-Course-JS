@@ -6,6 +6,7 @@ import * as model from './model.js';
 import recipeView from './view/recipeView';
 import searchView from './view/searchView';
 import resultView from './view/resultView';
+import paginationView from './view/paginationView';
 
 ///////////////////////////////////////
 // Render Recipes
@@ -38,12 +39,16 @@ async function controlSearch() {
     // fetch Searches
     await model.loadSearch(query);
 
-    resultView.render(model.state.search.result);
+    // resultView.render(model.state.search.result);
+    resultView.render(model.getSearchResultsPage());
+
+    paginationView.render(model.state.search);
   } catch (error) {
     console.log(error);
   }
 }
 
+// publisher subscriber pattern for adding event listener
 function init() {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearch);
