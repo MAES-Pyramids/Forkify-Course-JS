@@ -59,10 +59,21 @@ function controlServicesNumber(servicesNumber) {
   recipeView.update(model.state.exportedRecipe);
 }
 
+function controlBookmarks() {
+  if (!model.state.exportedRecipe.bookmarked)
+    model.addBookmarks(model.state.exportedRecipe);
+  else {
+    model.deleteBookmark(model.state.exportedRecipe.id);
+  }
+
+  recipeView.update(model.state.exportedRecipe);
+}
+
 // publisher subscriber pattern for adding event listener
 function init() {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandleServices(controlServicesNumber);
+  recipeView.addHandlerAddBookmark(controlBookmarks);
   searchView.addHandlerSearch(controlSearch);
   paginationView.addHandlerPagination(controlPagination);
 }
