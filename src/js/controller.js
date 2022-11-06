@@ -17,7 +17,6 @@ async function controlRecipes() {
 
     recipeView.renderSpinner();
 
-    // fetch Recipe
     await model.loadRecipe(id); //we are calling async function inside a async so we need to wait
 
     //Render Recipes
@@ -36,7 +35,6 @@ async function controlSearch() {
 
     resultView.renderSpinner();
 
-    // fetch Searches
     await model.loadSearch(query);
 
     // resultView.render(model.state.search.result);
@@ -48,9 +46,15 @@ async function controlSearch() {
   }
 }
 
+function controlPagination(page_number) {
+  resultView.render(model.getSearchResultsPage(page_number));
+  paginationView.render(model.state.search);
+}
+
 // publisher subscriber pattern for adding event listener
 function init() {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearch);
+  paginationView.addHandlerPagination(controlPagination);
 }
 init();
