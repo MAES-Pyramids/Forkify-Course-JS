@@ -22,7 +22,7 @@ async function controlRecipes() {
     //Render Recipes
     recipeView.render(model.state.exportedRecipe);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     recipeView.renderErrorMessage();
   }
 }
@@ -42,7 +42,7 @@ async function controlSearch() {
 
     paginationView.render(model.state.search);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -51,9 +51,15 @@ function controlPagination(page_number) {
   paginationView.render(model.state.search);
 }
 
+function controlServicesNumber(servicesNumber) {
+  model.updateService(servicesNumber);
+  recipeView.render(model.state.exportedRecipe);
+}
+
 // publisher subscriber pattern for adding event listener
 function init() {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandleServices(controlServicesNumber);
   searchView.addHandlerSearch(controlSearch);
   paginationView.addHandlerPagination(controlPagination);
 }

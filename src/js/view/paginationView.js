@@ -17,8 +17,6 @@ class paginationView extends view {
     const numberOfPages = Math.ceil(
       this._data.result.length / this._data.results_number
     );
-    console.log(`currentPage:   ${currentPage}`);
-    console.log(`numberOfPages: ${numberOfPages}`);
 
     if (currentPage == 1 && currentPage == numberOfPages) return ``;
     if (currentPage == 1 && currentPage != numberOfPages)
