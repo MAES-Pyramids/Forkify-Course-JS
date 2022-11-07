@@ -7,6 +7,7 @@ import recipeView from './view/recipeView';
 import searchView from './view/searchView';
 import resultView from './view/resultView';
 import paginationView from './view/paginationView';
+import bookmarkView from './view/bookmarkView';
 
 ///////////////////////////////////////
 // Render Recipes
@@ -19,6 +20,7 @@ async function controlRecipes() {
 
     // @) Update results view to mark selected search result
     resultView.update(model.getSearchResultsPage());
+    bookmarkView.update(model.state.bookmarks);
 
     await model.loadRecipe(id); //we are calling async function inside a async so we need to wait
 
@@ -40,7 +42,6 @@ async function controlSearch() {
 
     await model.loadSearch(query);
 
-    // resultView.render(model.state.search.result);
     resultView.render(model.getSearchResultsPage());
 
     paginationView.render(model.state.search);
@@ -67,6 +68,7 @@ function controlBookmarks() {
   }
 
   recipeView.update(model.state.exportedRecipe);
+  bookmarkView.render(model.state.bookmarks);
 }
 
 // publisher subscriber pattern for adding event listener

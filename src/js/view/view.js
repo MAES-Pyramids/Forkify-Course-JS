@@ -30,11 +30,14 @@ export default class view {
     });
   }
 
-  render(data) {
+  render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length == 0))
       return this.renderErrorMessage();
     this._data = data;
-    const Markups = this._generateMarkup(this._data);
+    const Markups = this._generateMarkup();
+
+    if (!render) return Markups;
+
     this._clear();
     this._parentElement.insertAdjacentHTML('afterBegin', Markups);
   }
