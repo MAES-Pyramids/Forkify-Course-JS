@@ -20,6 +20,7 @@ async function controlRecipes() {
 
     // @) Update results view to mark selected search result
     resultView.update(model.getSearchResultsPage());
+
     bookmarkView.update(model.state.bookmarks);
 
     await model.loadRecipe(id); //we are calling async function inside a async so we need to wait
@@ -71,8 +72,13 @@ function controlBookmarks() {
   bookmarkView.render(model.state.bookmarks);
 }
 
+const renderBookmarks = function () {
+  bookmarkView.render(model.state.bookmarks);
+};
+
 // publisher subscriber pattern for adding event listener
 function init() {
+  bookmarkView.addHandlerRender(renderBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandleServices(controlServicesNumber);
   recipeView.addHandlerAddBookmark(controlBookmarks);
