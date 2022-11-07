@@ -3,7 +3,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 ///////////////////////////////////////
 import * as model from './model.js';
-import recipeView from './view/recipeView';
+import recipeView from './view/recipeview';
 import searchView from './view/searchView';
 import resultView from './view/resultView';
 import paginationView from './view/paginationView';
