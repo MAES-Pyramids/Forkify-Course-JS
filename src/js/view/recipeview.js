@@ -1,5 +1,7 @@
 import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional';
+// import { Fraction } from 'fractional';
+import { numberToFraction } from '.././helper.js';
+
 // var Fraction = require('fractional').Fraction;
 import view from './view.js';
 
@@ -129,7 +131,7 @@ class RecipeView extends view {
       <use href="${icons}#icon-check"></use>
     </svg>
     <div class="recipe__quantity">${
-      item.quantity ? new Fraction(item.quantity).toString() : ''
+      item.quantity ? numberToFraction(item.quantity).toString() : ''
     }</div>
     <div class="recipe__description">
       <span class="recipe__unit">${item.unit}</span>
